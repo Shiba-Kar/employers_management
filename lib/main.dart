@@ -8,7 +8,9 @@ import 'package:hive_flutter/hive_flutter.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
-  await Hive.openBox<List<Employee>>('employees_box');
+  Hive.registerAdapter<Employee>(EmployeeType());
+  Hive.registerAdapter<Role>(RoleType());
+  await Hive.openBox<Employee>('employees_box');
   runApp(const ProviderScope(child: MyApp()));
 }
 

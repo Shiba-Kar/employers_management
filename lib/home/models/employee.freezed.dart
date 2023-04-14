@@ -20,10 +20,18 @@ Employee _$EmployeeFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Employee {
+  @JsonKey(name: "emp_id", includeIfNull: false)
+  @HiveField(0)
+  int? get empID => throw _privateConstructorUsedError;
+  @HiveField(1)
   String get name => throw _privateConstructorUsedError;
+  @HiveField(2)
   Role get role => throw _privateConstructorUsedError;
+  @JsonKey(name: "start_date", includeIfNull: false)
+  @HiveField(3)
   DateTime get startDate => throw _privateConstructorUsedError;
-  @JsonKey(includeIfNull: false)
+  @JsonKey(name: "end_date", includeIfNull: false)
+  @HiveField(4)
   DateTime? get endDate => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -38,10 +46,19 @@ abstract class $EmployeeCopyWith<$Res> {
       _$EmployeeCopyWithImpl<$Res, Employee>;
   @useResult
   $Res call(
-      {String name,
-      Role role,
-      DateTime startDate,
-      @JsonKey(includeIfNull: false) DateTime? endDate});
+      {@JsonKey(name: "emp_id", includeIfNull: false)
+      @HiveField(0)
+          int? empID,
+      @HiveField(1)
+          String name,
+      @HiveField(2)
+          Role role,
+      @JsonKey(name: "start_date", includeIfNull: false)
+      @HiveField(3)
+          DateTime startDate,
+      @JsonKey(name: "end_date", includeIfNull: false)
+      @HiveField(4)
+          DateTime? endDate});
 }
 
 /// @nodoc
@@ -57,12 +74,17 @@ class _$EmployeeCopyWithImpl<$Res, $Val extends Employee>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? empID = freezed,
     Object? name = null,
     Object? role = null,
     Object? startDate = null,
     Object? endDate = freezed,
   }) {
     return _then(_value.copyWith(
+      empID: freezed == empID
+          ? _value.empID
+          : empID // ignore: cast_nullable_to_non_nullable
+              as int?,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -91,10 +113,19 @@ abstract class _$$_EmployeeCopyWith<$Res> implements $EmployeeCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String name,
-      Role role,
-      DateTime startDate,
-      @JsonKey(includeIfNull: false) DateTime? endDate});
+      {@JsonKey(name: "emp_id", includeIfNull: false)
+      @HiveField(0)
+          int? empID,
+      @HiveField(1)
+          String name,
+      @HiveField(2)
+          Role role,
+      @JsonKey(name: "start_date", includeIfNull: false)
+      @HiveField(3)
+          DateTime startDate,
+      @JsonKey(name: "end_date", includeIfNull: false)
+      @HiveField(4)
+          DateTime? endDate});
 }
 
 /// @nodoc
@@ -108,12 +139,17 @@ class __$$_EmployeeCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? empID = freezed,
     Object? name = null,
     Object? role = null,
     Object? startDate = null,
     Object? endDate = freezed,
   }) {
     return _then(_$_Employee(
+      empID: freezed == empID
+          ? _value.empID
+          : empID // ignore: cast_nullable_to_non_nullable
+              as int?,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -136,29 +172,48 @@ class __$$_EmployeeCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
+@HiveType(typeId: 0, adapterName: "EmployeeType")
 class _$_Employee implements _Employee {
   const _$_Employee(
-      {required this.name,
-      required this.role,
-      required this.startDate,
-      @JsonKey(includeIfNull: false) this.endDate});
+      {@JsonKey(name: "emp_id", includeIfNull: false)
+      @HiveField(0)
+          this.empID,
+      @HiveField(1)
+          required this.name,
+      @HiveField(2)
+          required this.role,
+      @JsonKey(name: "start_date", includeIfNull: false)
+      @HiveField(3)
+          required this.startDate,
+      @JsonKey(name: "end_date", includeIfNull: false)
+      @HiveField(4)
+          this.endDate});
 
   factory _$_Employee.fromJson(Map<String, dynamic> json) =>
       _$$_EmployeeFromJson(json);
 
   @override
+  @JsonKey(name: "emp_id", includeIfNull: false)
+  @HiveField(0)
+  final int? empID;
+  @override
+  @HiveField(1)
   final String name;
   @override
+  @HiveField(2)
   final Role role;
   @override
+  @JsonKey(name: "start_date", includeIfNull: false)
+  @HiveField(3)
   final DateTime startDate;
   @override
-  @JsonKey(includeIfNull: false)
+  @JsonKey(name: "end_date", includeIfNull: false)
+  @HiveField(4)
   final DateTime? endDate;
 
   @override
   String toString() {
-    return 'Employee(name: $name, role: $role, startDate: $startDate, endDate: $endDate)';
+    return 'Employee(empID: $empID, name: $name, role: $role, startDate: $startDate, endDate: $endDate)';
   }
 
   @override
@@ -166,6 +221,7 @@ class _$_Employee implements _Employee {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Employee &&
+            (identical(other.empID, empID) || other.empID == empID) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.role, role) || other.role == role) &&
             (identical(other.startDate, startDate) ||
@@ -175,7 +231,8 @@ class _$_Employee implements _Employee {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, role, startDate, endDate);
+  int get hashCode =>
+      Object.hash(runtimeType, empID, name, role, startDate, endDate);
 
   @JsonKey(ignore: true)
   @override
@@ -193,21 +250,39 @@ class _$_Employee implements _Employee {
 
 abstract class _Employee implements Employee {
   const factory _Employee(
-      {required final String name,
-      required final Role role,
-      required final DateTime startDate,
-      @JsonKey(includeIfNull: false) final DateTime? endDate}) = _$_Employee;
+      {@JsonKey(name: "emp_id", includeIfNull: false)
+      @HiveField(0)
+          final int? empID,
+      @HiveField(1)
+          required final String name,
+      @HiveField(2)
+          required final Role role,
+      @JsonKey(name: "start_date", includeIfNull: false)
+      @HiveField(3)
+          required final DateTime startDate,
+      @JsonKey(name: "end_date", includeIfNull: false)
+      @HiveField(4)
+          final DateTime? endDate}) = _$_Employee;
 
   factory _Employee.fromJson(Map<String, dynamic> json) = _$_Employee.fromJson;
 
   @override
+  @JsonKey(name: "emp_id", includeIfNull: false)
+  @HiveField(0)
+  int? get empID;
+  @override
+  @HiveField(1)
   String get name;
   @override
+  @HiveField(2)
   Role get role;
   @override
+  @JsonKey(name: "start_date", includeIfNull: false)
+  @HiveField(3)
   DateTime get startDate;
   @override
-  @JsonKey(includeIfNull: false)
+  @JsonKey(name: "end_date", includeIfNull: false)
+  @HiveField(4)
   DateTime? get endDate;
   @override
   @JsonKey(ignore: true)

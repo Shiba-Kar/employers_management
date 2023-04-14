@@ -10,17 +10,25 @@ class EmployeeProvider extends StateNotifier<List<Employee>> {
 
   _loadEmployeesFromStorage() async {
     _storageServices = StorageServices();
+    var emp = await _storageServices.getEmployees();
+    state = emp;
+  }
+
+  Future updateEmployee(Employee emp) async {
+    await _storageServices.updateEmployee(emp);
     state = await _storageServices.getEmployees();
   }
 
-  addEmployee(Employee emp) async {
+  Future addEmployee(Employee emp) async {
     await _storageServices.addEmployee(emp);
-    state = [...state, emp];
+    state = [emp, ...state];
+    //state = [...state, emp];
   }
 
   removeEmployee(Employee emp) async {
+    state =
+        state.where((e) => e.empID != emp.empID).toList(); //.reversed.toList();
     await _storageServices.removeEmployee(emp);
-    state = state.where((e) => e.name != emp.name).toList();
   }
 }
 
